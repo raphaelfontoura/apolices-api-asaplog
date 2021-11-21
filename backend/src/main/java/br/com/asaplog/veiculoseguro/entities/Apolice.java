@@ -9,10 +9,9 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "tb_apolices")
 public class Apolice {
     @Id
+    private String id;
     @GeneratedValue
     private UUID codigo;
     @NotNull
