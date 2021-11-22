@@ -1,7 +1,9 @@
 package br.com.asaplog.veiculoseguro.models.entities;
 
+import br.com.asaplog.veiculoseguro.models.embedded.ClienteSummary;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,8 +18,8 @@ import java.util.UUID;
 public class Apolice {
     @Id
     private String id;
-
-    private UUID codigo;
+    @NotNull
+    private Long codigo;
     @NotNull
     private Instant inicioVigencia;
     @NotNull
@@ -27,5 +29,5 @@ public class Apolice {
     @NotNull
     private BigDecimal valor;
     @NotNull
-    private Cliente cliente;
+    private ClienteSummary cliente;
 }
