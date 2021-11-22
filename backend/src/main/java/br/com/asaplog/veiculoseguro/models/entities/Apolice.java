@@ -1,6 +1,6 @@
 package br.com.asaplog.veiculoseguro.models.entities;
 
-import br.com.asaplog.veiculoseguro.entities.Cliente;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,10 +11,12 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 @Document(collection = "apolices")
 public class Apolice {
     @Id
     private String id;
+
     private UUID codigo;
     @NotNull
     private Instant inicioVigencia;

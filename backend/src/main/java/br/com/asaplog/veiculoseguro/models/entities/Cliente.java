@@ -1,13 +1,15 @@
 package br.com.asaplog.veiculoseguro.models.entities;
 
-import br.com.asaplog.veiculoseguro.entities.Apolice;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -24,5 +26,6 @@ public class Cliente {
     private String cidade;
     @NotNull
     private String uf;
-    private final Set<Apolice> apolices = new HashSet<>();
+    @DBRef(lazy = true)
+    public final List<Apolice> apolices = new ArrayList<>();
 }
