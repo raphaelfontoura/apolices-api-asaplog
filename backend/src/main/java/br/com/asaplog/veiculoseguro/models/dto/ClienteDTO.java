@@ -45,7 +45,8 @@ public class ClienteDTO {
                 this.nomeCompleto,
                 this.cpf,
                 this.cidade,
-                this.uf);
+                this.uf,
+                this.apolices);
     }
 
     public void copyDtoToEntity(Cliente entity) {

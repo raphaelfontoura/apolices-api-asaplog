@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Profile;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -31,8 +32,8 @@ public class SeedTestConfig {
         clienteRepository.deleteAll();
         apoliceRepository.deleteAll();
 
-        Cliente raphael = new Cliente(null, "Raphael Fontoura", "88111717172", "Brasília", "DF");
-        Cliente gladson = new Cliente(null, "Gladson Fontoura", "11122233345", "São Luís", "MA");
+        Cliente raphael = new Cliente(null, "Raphael Fontoura", "88111717172", "Brasília", "DF", new ArrayList<>());
+        Cliente gladson = new Cliente(null, "Gladson Fontoura", "11122233345", "São Luís", "MA", new ArrayList<>());
 
         clienteRepository.saveAll(Arrays.asList(raphael, gladson));
 

@@ -4,7 +4,6 @@ import br.com.asaplog.veiculoseguro.models.embedded.ApoliceNumber;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,6 +29,6 @@ public class Cliente {
     private String uf;
 //    @DBRef(lazy = true)
 //    public final List<Apolice> apolices = new ArrayList<>();
-    @Transient
-    public final List<ApoliceNumber> apoliceNumbers = new ArrayList<>();
+    @DBRef
+    public List<ApoliceNumber> apoliceNumbers = new ArrayList<>();
 }
