@@ -4,11 +4,11 @@ import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
 import br.com.asaplog.veiculoseguro.services.ApoliceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -26,5 +26,12 @@ public class ApoliceController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<ApoliceDTO> getById(@PathVariable String id) {
         return ResponseEntity.ok().body(service.getById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<ApoliceDTO> save(@Valid @RequestBody ApoliceDTO dto) {
+        ApoliceDTO apoliceDTO = service.save(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(apoliceDTO).toUri();
+        return ResponseEntity.created(uri).body(apoliceDTO);
     }
 }

@@ -1,12 +1,14 @@
 package br.com.asaplog.veiculoseguro.services;
 
 import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
+import br.com.asaplog.veiculoseguro.models.entities.Apolice;
 import br.com.asaplog.veiculoseguro.repositories.ApoliceRepository;
 import br.com.asaplog.veiculoseguro.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +24,13 @@ public class ApoliceService {
 
     public ApoliceDTO getById(String id) {
         var apolice = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Apólice não encontrada."));
+        return new ApoliceDTO(apolice);
+    }
+
+    public ApoliceDTO save(ApoliceDTO dto) {
+        Apolice apolice = dto.dtoToEntity();
+        apolice.setCodigo(Math.abs(UUID.randomUUID().getMostSignificantBits()));
+        apolice = repository.save(apolice);
         return new ApoliceDTO(apolice);
     }
 }

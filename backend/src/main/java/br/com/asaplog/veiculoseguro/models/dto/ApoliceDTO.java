@@ -36,4 +36,14 @@ public class ApoliceDTO {
         this.valor = entity.getValor();
         this.cliente = entity.getCliente();
     }
+
+    public Apolice dtoToEntity() {
+        return new Apolice(this.id,
+                this.codigo,
+                this.inicioVigencia,
+                this.fimVigencia,
+                this.placaVeiculo,
+                this.valor,
+                this.cliente);
+    }
 }
