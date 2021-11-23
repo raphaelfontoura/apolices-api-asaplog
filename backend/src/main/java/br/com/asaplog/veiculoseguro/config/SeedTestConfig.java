@@ -1,6 +1,5 @@
 package br.com.asaplog.veiculoseguro.config;
 
-import br.com.asaplog.veiculoseguro.models.embedded.ApoliceNumber;
 import br.com.asaplog.veiculoseguro.models.embedded.ClienteSummary;
 import br.com.asaplog.veiculoseguro.models.entities.Apolice;
 import br.com.asaplog.veiculoseguro.models.entities.Cliente;
@@ -13,9 +12,7 @@ import org.springframework.context.annotation.Profile;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -32,8 +29,8 @@ public class SeedTestConfig {
         clienteRepository.deleteAll();
         apoliceRepository.deleteAll();
 
-        Cliente raphael = new Cliente(null, "Raphael Fontoura", "88111717172", "Brasília", "DF", new ArrayList<>());
-        Cliente gladson = new Cliente(null, "Gladson Fontoura", "11122233345", "São Luís", "MA", new ArrayList<>());
+        Cliente raphael = new Cliente(null, "Raphael Fontoura", "699.605.490-70", "Brasília", "DF");
+        Cliente gladson = new Cliente(null, "Gladson Fontoura", "090.304.920-15", "São Luís", "MA");
 
         clienteRepository.saveAll(Arrays.asList(raphael, gladson));
 
@@ -53,9 +50,6 @@ public class SeedTestConfig {
                 new ClienteSummary(raphael));
 
         apoliceRepository.saveAll(Arrays.asList(apoliceRaphael, apolice2Raphael));
-        var apolice1 = new ApoliceNumber(apoliceRaphael);
-        var apolice2 = new ApoliceNumber(apolice2Raphael);
-        raphael.getApoliceNumbers().addAll(Arrays.asList(apolice1, apolice2));
-        clienteRepository.save(raphael);
+
     }
 }

@@ -27,8 +27,4 @@ public class Cliente {
     private String cidade;
     @NotNull
     private String uf;
-//    @DBRef(lazy = true)
-//    public final List<Apolice> apolices = new ArrayList<>();
-    @DBRef
-    public List<ApoliceNumber> apoliceNumbers = new ArrayList<>();
 }

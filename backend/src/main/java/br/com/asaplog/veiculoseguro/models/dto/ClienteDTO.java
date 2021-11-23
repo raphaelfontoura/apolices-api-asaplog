@@ -29,7 +29,6 @@ public class ClienteDTO {
     @NotNull(message = "UF não pode ficar vazio")
     @Pattern(regexp = "^[A-Z]{2}", message = "Digite um UF válida")
     private String uf;
-    public final List<ApoliceNumber> apolices = new ArrayList<>();
 
     public ClienteDTO(Cliente entity) {
         this.id = entity.getId();
@@ -37,7 +36,6 @@ public class ClienteDTO {
         this.cpf = entity.getCpf();
         this.cidade = entity.getCidade();
         this.uf = entity.getUf();
-        this.apolices.addAll(entity.getApoliceNumbers());
     }
 
     public Cliente parseDtoToEntity() {
@@ -45,8 +43,7 @@ public class ClienteDTO {
                 this.nomeCompleto,
                 this.cpf,
                 this.cidade,
-                this.uf,
-                this.apolices);
+                this.uf);
     }
 
     public void copyDtoToEntity(Cliente entity) {

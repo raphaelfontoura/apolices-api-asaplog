@@ -19,11 +19,18 @@ public class ApoliceService {
 
     public List<ApoliceDTO> getAll() {
         var apolices = repository.findAll();
-        return apolices.stream().map(apolice -> new ApoliceDTO(apolice)).collect(Collectors.toList());
+        return apolices.stream().map(ApoliceDTO::new).collect(Collectors.toList());
     }
 
+    @Deprecated
     public ApoliceDTO getById(String id) {
         var apolice = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Apólice não encontrada."));
+        return new ApoliceDTO(apolice);
+    }
+
+    public ApoliceDTO getByCodigo(Long codigo) {
+        var apolice = repository.findByCodigo(codigo);
+        if (apolice == null) throw new ResourceNotFoundException("Apólice não encontrada.");
         return new ApoliceDTO(apolice);
     }
 
