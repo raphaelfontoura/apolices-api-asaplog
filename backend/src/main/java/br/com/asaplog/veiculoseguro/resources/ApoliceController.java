@@ -4,7 +4,6 @@ import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
 import br.com.asaplog.veiculoseguro.services.ApoliceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 

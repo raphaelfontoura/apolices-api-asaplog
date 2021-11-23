@@ -1,19 +1,13 @@
 package br.com.asaplog.veiculoseguro.models.dto;
 
-import br.com.asaplog.veiculoseguro.models.embedded.ApoliceNumber;
 import br.com.asaplog.veiculoseguro.models.entities.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter @Setter

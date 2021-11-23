@@ -1,6 +1,5 @@
 package br.com.asaplog.veiculoseguro.services;
 
-import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
 import br.com.asaplog.veiculoseguro.models.dto.ClienteDTO;
 import br.com.asaplog.veiculoseguro.models.entities.Cliente;
 import br.com.asaplog.veiculoseguro.repositories.ClienteRepository;
