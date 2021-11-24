@@ -1,5 +1,4 @@
 import axios from "axios";
-// import Alert from "components/Alert";
 import { Cliente } from "models/Cliente"
 import { ApiError } from "models/ApiError";
 import { useState } from "react"

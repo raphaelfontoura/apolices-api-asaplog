@@ -28,7 +28,7 @@ const ApoliceDetails = () => {
     }).catch(err => {
       console.log(err.response.data);
     })
-  }, [])
+  }, [codigoId])
 
   return (
     <div className="card">

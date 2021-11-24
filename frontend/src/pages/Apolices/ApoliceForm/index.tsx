@@ -1,11 +1,10 @@
 import { Apolice } from "models/Apolice"
 import { ApiError } from "models/ApiError";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "utils/request";
 import { Link, useHistory } from "react-router-dom";
 import Alert from "components/Alert";
-import { Cliente } from "models/Cliente";
 
 type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
 
