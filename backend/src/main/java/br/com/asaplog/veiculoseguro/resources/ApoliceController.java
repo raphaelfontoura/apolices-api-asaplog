@@ -1,6 +1,7 @@
 package br.com.asaplog.veiculoseguro.resources;
 
 import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
+import br.com.asaplog.veiculoseguro.models.dto.ApoliceInputDTO;
 import br.com.asaplog.veiculoseguro.services.ApoliceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ApoliceController {
     }
 
     @PostMapping
-    public ResponseEntity<ApoliceDTO> save(@Valid @RequestBody ApoliceDTO dto) {
+    public ResponseEntity<ApoliceDTO> save(@Valid @RequestBody ApoliceInputDTO dto) {
         ApoliceDTO apoliceDTO = service.save(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(apoliceDTO).toUri();
         return ResponseEntity.created(uri).body(apoliceDTO);

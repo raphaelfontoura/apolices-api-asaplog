@@ -21,7 +21,7 @@ public class ClienteDTO {
     @NotNull
     private String cidade;
     @NotNull(message = "UF não pode ficar vazio")
-    @Pattern(regexp = "^[A-Z]{2}", message = "Digite um UF válida")
+    @Pattern(regexp = "^[A-Z]{2}", message = "Digite um UF válido")
     private String uf;
 
     public ClienteDTO(Cliente entity) {
@@ -45,5 +45,12 @@ public class ClienteDTO {
         entity.setCpf(this.cpf);
         entity.setNomeCompleto(this.nomeCompleto);
         entity.setUf(this.uf);
+    }
+
+    public static String convertCpf(String cpf) {
+        if (cpf.length() == 11) {
+            cpf = cpf.replaceAll("([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})", "$1.$2.$3-$4");
+        }
+        return cpf;
     }
 }

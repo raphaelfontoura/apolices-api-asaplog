@@ -1,8 +1,13 @@
 package br.com.asaplog.veiculoseguro.services;
 
 import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
+import br.com.asaplog.veiculoseguro.models.dto.ApoliceInputDTO;
+import br.com.asaplog.veiculoseguro.models.dto.ClienteDTO;
+import br.com.asaplog.veiculoseguro.models.embedded.ClienteSummary;
 import br.com.asaplog.veiculoseguro.models.entities.Apolice;
+import br.com.asaplog.veiculoseguro.models.entities.Cliente;
 import br.com.asaplog.veiculoseguro.repositories.ApoliceRepository;
+import br.com.asaplog.veiculoseguro.repositories.ClienteRepository;
 import br.com.asaplog.veiculoseguro.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +21,8 @@ public class ApoliceService {
 
     @Autowired
     private ApoliceRepository repository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     public List<ApoliceDTO> getAll() {
         var apolices = repository.findAll();
@@ -36,6 +43,16 @@ public class ApoliceService {
 
     public ApoliceDTO save(ApoliceDTO dto) {
         Apolice apolice = dto.dtoToEntity();
+        apolice.setCodigo(Math.abs(UUID.randomUUID().getMostSignificantBits()));
+        apolice = repository.save(apolice);
+        return new ApoliceDTO(apolice);
+    }
+
+    public ApoliceDTO save(ApoliceInputDTO dto) {
+        Apolice apolice = dto.dtoToEntity();
+        Cliente cliente = clienteRepository.findByCpf(ClienteDTO.convertCpf(dto.getClienteCpf()));
+        if (cliente == null) throw new ResourceNotFoundException("CPF não encontrado.");
+        apolice.setCliente(new ClienteSummary(cliente));
         apolice.setCodigo(Math.abs(UUID.randomUUID().getMostSignificantBits()));
         apolice = repository.save(apolice);
         return new ApoliceDTO(apolice);

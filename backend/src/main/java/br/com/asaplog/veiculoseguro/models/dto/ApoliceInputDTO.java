@@ -1,7 +1,7 @@
 package br.com.asaplog.veiculoseguro.models.dto;
 
-import br.com.asaplog.veiculoseguro.models.embedded.ClienteSummary;
 import br.com.asaplog.veiculoseguro.models.entities.Apolice;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Getter @Setter
 @AllArgsConstructor
-public class ApoliceDTO {
+public class ApoliceInputDTO {
     private String id;
     private Long codigo;
     @NotNull
@@ -25,16 +25,10 @@ public class ApoliceDTO {
     @NotNull
     @Positive(message = "Valor da apólice não pode ser zero ou negativo.")
     private BigDecimal valor;
-    private ClienteSummary cliente;
+    private String clienteCpf;
 
-    public ApoliceDTO(Apolice entity) {
-        this.id = entity.getId();
-        this.codigo = entity.getCodigo();
-        this.inicioVigencia = entity.getInicioVigencia();
-        this.fimVigencia = entity.getFimVigencia();
-        this.placaVeiculo = entity.getPlacaVeiculo();
-        this.valor = entity.getValor();
-        this.cliente = entity.getCliente();
+    public void setClienteCpf(String clienteCpf) {
+        this.clienteCpf = ClienteDTO.convertCpf(clienteCpf);
     }
 
     public Apolice dtoToEntity() {
@@ -44,6 +38,6 @@ public class ApoliceDTO {
                 this.fimVigencia,
                 this.placaVeiculo,
                 this.valor,
-                this.cliente);
+                null);
     }
 }

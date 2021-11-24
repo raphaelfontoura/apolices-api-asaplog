@@ -1,16 +1,12 @@
 package br.com.asaplog.veiculoseguro.models.entities;
 
-import br.com.asaplog.veiculoseguro.models.embedded.ApoliceNumber;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor

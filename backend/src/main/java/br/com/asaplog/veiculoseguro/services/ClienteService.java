@@ -27,6 +27,7 @@ public class ClienteService {
 
     public ClienteDTO save(ClienteDTO dto) {
         Cliente cliente = dto.parseDtoToEntity();
+        cliente.setCpf(ClienteDTO.convertCpf(dto.getCpf()));
         var result = repository.save(cliente);
         return new ClienteDTO(cliente);
     }
@@ -46,4 +47,5 @@ public class ClienteService {
     private Cliente getClienteById(String id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
     }
+
 }

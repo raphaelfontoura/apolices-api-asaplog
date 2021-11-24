@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -36,15 +37,15 @@ public class SeedTestConfig {
 
         Apolice apoliceRaphael = new Apolice(null,
                 Math.abs(UUID.randomUUID().getMostSignificantBits()),
-                Instant.parse("2020-04-01T14:00:00Z"),
-                Instant.parse("2021-04-01T14:00:00Z"),
+                LocalDate.parse("2020-04-01"),
+                LocalDate.parse("2021-04-01"),
                 "AAA-1122",
                 new BigDecimal(2500),
                 new ClienteSummary(raphael));
         Apolice apolice2Raphael = new Apolice(null,
                 Math.abs(UUID.randomUUID().getMostSignificantBits()),
-                Instant.parse("2021-04-02T11:00:00Z"),
-                Instant.parse("2022-04-02T11:00:00Z"),
+                LocalDate.parse("2021-04-02"),
+                LocalDate.parse("2022-04-02"),
                 "AAA-1122",
                 new BigDecimal(2700),
                 new ClienteSummary(raphael));
