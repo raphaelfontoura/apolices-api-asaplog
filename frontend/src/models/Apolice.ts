@@ -1,8 +1,7 @@
-import { ClienteApolice } from "./ClienteApolice";
 
 export interface Apolice {
   id?: string;
-  codigo? : number,
+  codigo? : string,
   inicioVigencia: string,
   fimVigencia: string,
   placaVeiculo: string,

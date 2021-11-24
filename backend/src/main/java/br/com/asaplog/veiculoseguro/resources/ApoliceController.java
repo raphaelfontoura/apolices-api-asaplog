@@ -2,6 +2,7 @@ package br.com.asaplog.veiculoseguro.resources;
 
 import br.com.asaplog.veiculoseguro.models.dto.ApoliceDTO;
 import br.com.asaplog.veiculoseguro.models.dto.ApoliceInputDTO;
+import br.com.asaplog.veiculoseguro.models.dto.ApoliceOutputDTO;
 import br.com.asaplog.veiculoseguro.services.ApoliceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ApoliceController {
     }
 
     @GetMapping(value = "/{codigo}")
-    public ResponseEntity<ApoliceDTO> getByCodigo(@PathVariable Long codigo) {
+    public ResponseEntity<ApoliceOutputDTO> getByCodigo(@PathVariable Long codigo) {
         return ResponseEntity.ok().body(service.getByCodigo(codigo));
     }
 

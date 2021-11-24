@@ -2,7 +2,7 @@ import axios from "axios";
 import Button from "components/Button";
 import Spinner from "components/Spinner";
 import { Apolice } from "models/Apolice"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "utils/request";
 
@@ -11,10 +11,12 @@ const Apolices = () => {
 
   const [apolices, setApolices] = useState<Apolice[]>();
   const [isLoading, setIsLoading] = useState(false);
+  const [numeroApolice, setNumeroApolice] = useState<number>();
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(BASE_URL + "/apolices").then(response => {
+    axios.get(BASE_URL + "/apolices")
+    .then(response => {
       setApolices(response.data);
     }).catch(error => {
       console.error(error);
@@ -22,8 +24,23 @@ const Apolices = () => {
     setIsLoading(false);
   }, [])
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNumeroApolice(parseInt(e.target.value));
+  }
+
   return (
     <div>
+      <div className="input-group mb-3 mt-3">
+        <input type="string"
+          value = {numeroApolice} 
+          onChange = {handleInputChange}
+          className="form-control" 
+          placeholder="Localizar Apolice" 
+          aria-label="Localizar Apolice" aria-describedby="btn-localizar" />
+        <Link to={`apolices/${numeroApolice}`} className="btn btn-outline-primary" type="button" id="btn-localizar">
+          Buscar
+        </Link>
+      </div>
       <div className="mt-4 mb-2">
         <Link to="/apolices/nova">
           <Button text="Cadastrar Nova Apolice" />
@@ -51,7 +68,7 @@ const Apolices = () => {
               </tr>
             ))
           )}
-          
+
         </tbody>
       </table>
     </div>

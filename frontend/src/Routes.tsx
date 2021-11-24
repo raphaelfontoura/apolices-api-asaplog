@@ -1,5 +1,6 @@
 import Navbar from "components/Navbar";
 import Apolices from "pages/Apolices";
+import ApoliceDetails from "pages/Apolices/ApoliceDetails";
 import ApoliceForm from "pages/Apolices/ApoliceForm";
 import Clientes from "pages/Clientes";
 import ClienteForm from "pages/Clientes/ClienteForm";
@@ -23,9 +24,10 @@ const Routes = () => (
         <Route path="/apolices" exact>
           <Apolices />
         </Route>
-        <Route path="/apolices/nova" exact>
+        <Route path="/apolices/nova">
           <ApoliceForm />
         </Route>
+        <Route path="/apolices/:codigoId" children={<ApoliceDetails />} />
       </Switch>
     </div>
   </BrowserRouter>

@@ -3,7 +3,7 @@ import { ApiError } from "models/ApiError";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "utils/request";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Alert from "components/Alert";
 import { Cliente } from "models/Cliente";
 
@@ -17,6 +17,8 @@ const ApoliceForm = () => {
     valor: 0,
   });
   const [error, setError] = useState<ApiError>();
+
+  let history = useHistory();
 
   const handleOnChange = ({ target }: FormEvent) => {
     setError(undefined);
@@ -34,6 +36,7 @@ const ApoliceForm = () => {
     console.log(payload);
     axios.post(BASE_URL + "/apolices", payload).then(response => {
       console.log(response.data);
+      history.push("/apolices")
     }).catch((error) => {
       console.error(error.response.data);
       setError(error.response.data);
@@ -42,6 +45,7 @@ const ApoliceForm = () => {
 
   return (
     <>
+    
       <div className="mt-4 mb-2">
         {error?.status === 404 && <Alert>{error?.message}</Alert>}
       </div>

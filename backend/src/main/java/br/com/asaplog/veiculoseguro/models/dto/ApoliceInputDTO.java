@@ -1,6 +1,7 @@
 package br.com.asaplog.veiculoseguro.models.dto;
 
 import br.com.asaplog.veiculoseguro.models.entities.Apolice;
+import br.com.asaplog.veiculoseguro.utils.Utils;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class ApoliceInputDTO {
     private String clienteCpf;
 
     public void setClienteCpf(String clienteCpf) {
-        this.clienteCpf = ClienteDTO.convertCpf(clienteCpf);
+        this.clienteCpf = Utils.convertCpf(clienteCpf);
     }
 
     public Apolice dtoToEntity() {

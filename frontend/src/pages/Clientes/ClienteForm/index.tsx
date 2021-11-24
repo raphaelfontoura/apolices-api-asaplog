@@ -3,7 +3,7 @@ import axios from "axios";
 import { Cliente } from "models/Cliente"
 import { ApiError } from "models/ApiError";
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { BASE_URL } from "utils/request";
 
 type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
@@ -18,6 +18,8 @@ const ClienteForm = () => {
   });
   const [error, setError] = useState<ApiError>()
 
+  let history = useHistory();
+
   const handleOnChange = ({ target }: FormEvent) => {
     setError(undefined);
     const name = target.name;
@@ -30,9 +32,10 @@ const ClienteForm = () => {
     const payload = {
       ...formData
     }
-    console.log(payload);
+    // console.log(payload);
     axios.post(BASE_URL + "/clientes", payload).then(response => {
-      console.log(response.data);
+      // console.log(response.data);
+      history.push("/clientes");
     }).catch((error) => {
       console.error(error.response.data);
       setError(error.response.data);

@@ -4,6 +4,7 @@ import br.com.asaplog.veiculoseguro.models.dto.ClienteDTO;
 import br.com.asaplog.veiculoseguro.models.entities.Cliente;
 import br.com.asaplog.veiculoseguro.repositories.ClienteRepository;
 import br.com.asaplog.veiculoseguro.services.exceptions.ResourceNotFoundException;
+import br.com.asaplog.veiculoseguro.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class ClienteService {
 
     public ClienteDTO save(ClienteDTO dto) {
         Cliente cliente = dto.parseDtoToEntity();
-        cliente.setCpf(ClienteDTO.convertCpf(dto.getCpf()));
+        cliente.setCpf(Utils.convertCpf(dto.getCpf()));
         var result = repository.save(cliente);
         return new ClienteDTO(cliente);
     }
